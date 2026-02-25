@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest 
     steps: 
       - name: Print hello
-        run: echo "Hello world"
+        run: echo "${{ toJSON(github) }}"
 
       - name: checkout the code
         uses: actions/checkout@v6
