@@ -10,4 +10,10 @@ jobs:
       - name: checkout the code
         uses: actions/checkout@v6
 
-      - run: ls
+      - name: install node
+        uses: actions/setup-node@v6
+        with: 
+          node-version: *
+      - run: npm ci
+      - run: npm test
+
