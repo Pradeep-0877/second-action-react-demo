@@ -17,3 +17,15 @@ jobs:
       - run: npm ci
       - run: npm test
 
+  Deploy: 
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Fetch code
+      uses: actions/checkout@v6 
+    - name: install dependencies 
+      run: |
+        npm run build
+        ls 
+        
+    
+
