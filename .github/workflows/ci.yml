@@ -4,7 +4,13 @@ on:
     types: 
       - opened
       - edited
+    branches: 
+      - master
   workflow_dispatch: 
+    inputs: 
+      Test: 
+        type: string
+        default: "Main"
   push: 
     branches: 
       - master
