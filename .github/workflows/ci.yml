@@ -1,7 +1,9 @@
 name: npm run workflow_dispatch
 on: 
  - workflow_dispatch
- - push
+ - push 
+ 
+ 
 jobs: 
   Build: 
     runs-on: ubuntu-latest 
