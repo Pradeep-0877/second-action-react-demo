@@ -23,8 +23,7 @@ jobs:
     steps: 
       - name: Print hello
         run: |
-          echo "${{ toJSON(github) }}"
-          echo "${{inputs.Test}}"
+          echo "My name is ${{inputs.Test}}"
 
       - name: checkout the code
         uses: actions/checkout@v6
