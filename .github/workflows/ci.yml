@@ -1,9 +1,12 @@
 name: npm run workflow_dispatch
 on: 
- - workflow_dispatch
- - push 
+ pull_request: 
+   types: 
+    - opened
+    - edited
+   
  
- 
+
 jobs: 
   Build: 
     runs-on: ubuntu-latest 
