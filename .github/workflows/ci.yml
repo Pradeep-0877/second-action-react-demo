@@ -1,9 +1,10 @@
 name: npm run workflow_dispatch
 on: 
- pull_request: 
-   types: 
-    - opened
-    - edited
+  pull_request: 
+    types: 
+      - opened
+      - edited
+  workflow_dispatch: 
    
  
 
