@@ -32,8 +32,19 @@ jobs:
         uses: actions/setup-node@v6
         with: 
           node-version: 18.*
-      - run: npm ci
-      - run: npm test
+      - name: install dependencies 
+        run: |
+          npm ci
+          npm run build
+          ls 
+      - name: Testing...
+        run: npm test
+
+      - name: uploading the artifacts
+        uses: actions/upload-artifact@v4
+        with: 
+          path: dist
+
 
   Deploy: 
     needs: Build 
@@ -43,18 +54,16 @@ jobs:
       uses: actions/setup-node@v6 
       with: 
        node-version: 18.*
-    - name: Fetch code
-      uses: actions/checkout@v6 
-    - name: install dependencies 
-      run: |
-        npm ci
-        npm run build
-        ls 
-
-    - name: uploading the artifacts
-      uses: actions/upload-artifact@v4
+    - name: download artifacts
+      uses: actions/download-artifact@v6
       with: 
-        path: dist 
+        name: dist
+    - run: ls
+      
+
+
+        
+    
 
     
 
