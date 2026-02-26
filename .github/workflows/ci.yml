@@ -11,6 +11,9 @@ on:
       Test: 
         type: string
         default: "Main"
+      env: 
+        type: string
+        default: "Dev"
   push: 
     branches: 
       - master
@@ -60,6 +63,8 @@ jobs:
       with: 
         name: dist-files
     - run: ls
+    - name: Deploy to ${{inputs.env}}
+      run: echo Deployed to ${{inputs.env}} successfully
       
 
 
