@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "My name is ${{inputs.Test}}"
           echo "NAME=pradeep" >> $GITHUB_OUTPUT
-          echo "Env is ${{env.NAME}}"
+          echo "Env is ${{env.name}}"
 
       - name: checkout the code
         uses: actions/checkout@v6
