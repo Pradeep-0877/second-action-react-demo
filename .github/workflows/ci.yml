@@ -23,10 +23,14 @@ on:
 jobs: 
   Build: 
     runs-on: ubuntu-latest 
+    outputs: 
+      NAME: ${{ steps.name.outputs.NAME }}
     steps: 
       - name: Print hello
+        id: name
         run: |
           echo "My name is ${{inputs.Test}}"
+          echo "NAME=pradeep" >> $GITHUB_OUTPUT
 
       - name: checkout the code
         uses: actions/checkout@v6
@@ -54,6 +58,8 @@ jobs:
     needs: Build 
     runs-on: ubuntu-latest
     steps: 
+    - name: displaying job output
+      run: echo "${{ needs.Build.outputs.NAME }}"
     - name: install node
       uses: actions/setup-node@v6 
       with: 
