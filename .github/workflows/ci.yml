@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
     - name: displaying job output
-      run: echo "${{ needs.Build.outputs.NAME }}"
+      run: echo ${{ needs.Build.outputs.NAME }}
     - name: install node
       uses: actions/setup-node@v6 
       with: 
