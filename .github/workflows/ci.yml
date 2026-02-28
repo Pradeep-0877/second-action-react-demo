@@ -88,10 +88,18 @@ jobs:
       - name: install dependencies
         run: |
           npm ci
-          npm run build
+          ls
 
       - name: Test
-        run: npm test
+        run: |
+          npm test
+          ls
+
+      - name: upload test result
+        uses: actions/upload-artifact@v6
+        with: 
+          name: test-report
+          path: test.json
 
 
   Deploy: 
