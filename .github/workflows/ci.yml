@@ -23,8 +23,8 @@ env:
 
 jobs: 
   Build: 
-    env: 
-      name: coming from jobs
+    # env: 
+    #   name: coming from jobs
     runs-on: ubuntu-latest 
     environment: DEV
     outputs: 
