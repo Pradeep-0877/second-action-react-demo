@@ -1,0 +1,22 @@
+name: matrix pipeline
+on: 
+    - workflow_dispatch
+    - push
+jobs: 
+    Build: 
+      
+      strategy: 
+        matrix: 
+            node-version: [12,14,16]
+            os: [ubuntu-latest, windows-latest]
+      runs-on: ${{matrix.os}}
+      steps: 
+        - name: checkout code
+          uses: actions/checkout@v6
+        - name: intall node
+          uses: actions/setup-node@v6
+          with: 
+            node-version: ${{matrix.node-version}}
+
+        - name: Display
+          run: echo "os is ${{matrix.os}} and node version is ${{matrix.node-version}}"
