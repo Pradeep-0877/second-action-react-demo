@@ -95,7 +95,7 @@ jobs:
         run: |
           npm run test
           ls
-          exit 0
+          exit 1
 
       - name: upload test result
         if: success() && steps.test.outcome == 'success'
