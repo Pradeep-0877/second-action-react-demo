@@ -9,6 +9,8 @@ jobs:
         pat_token: ${{secrets.NAME}}
   Deploy: 
     runs-on: ubuntu-latest
+    container: 
+        image: ubuntu:22.04
     needs: Build
     steps: 
       - name: Diplaying output of Build
