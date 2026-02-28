@@ -5,3 +5,5 @@ jobs:
     uses: ./.github/workflows/reusable-workflow.yaml
     with: 
       env: "prod"
+    secrets: 
+        pat_token: ${{secrets.NAME}}

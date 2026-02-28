@@ -5,6 +5,10 @@ on:
       env: 
         type: string
         default: Dev
+    secrets: 
+        pat_token: 
+            required: true
+            
 
 jobs: 
   Build: 
