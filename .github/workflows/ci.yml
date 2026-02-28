@@ -36,7 +36,7 @@ jobs:
           echo "My secret is ${{secrets.git_password}}"
           echo "My name is ${{inputs.Test}}"
           echo "NAME=pradeep" >> $GITHUB_OUTPUT
-          echo "Env is ${{env.NAME}}"
+          echo "Env is ${{vars.NAME}}"
           printenv
 
       - name: checkout the code
