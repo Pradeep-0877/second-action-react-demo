@@ -12,4 +12,4 @@ jobs:
     needs: Build
     steps: 
       - name: Diplaying output of Build
-        echo: "${{needs.Build.outputs.result}}"
+        run: echo "${{needs.Build.outputs.result}}"
