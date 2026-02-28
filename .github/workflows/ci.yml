@@ -18,8 +18,8 @@ on:
     branches: 
       - master
    
-env: 
-  name: coming from workflow
+# env: 
+#   name: coming from workflow
 
 jobs: 
   Build: 
