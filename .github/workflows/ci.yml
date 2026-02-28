@@ -69,6 +69,9 @@ jobs:
           path: dist
           name: dist-files
 
+  Reuse: 
+    uses: ./.github/workflows/reusable-workflow.yaml
+
   Test: 
     runs-on: windows-latest
     if: failure()
