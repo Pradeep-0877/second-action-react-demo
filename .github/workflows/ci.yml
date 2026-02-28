@@ -71,7 +71,9 @@ jobs:
   Test: 
     runs-on: windows-latest
     if: failure()
-    needs: Build
+    needs: 
+      - Build
+      - Deploy
     steps: 
       - name: Get code
         uses: actions/checkout@v6
