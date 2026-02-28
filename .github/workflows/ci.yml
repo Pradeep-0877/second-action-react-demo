@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "My name is ${{inputs.Test}}"
           echo "NAME=pradeep" >> $GITHUB_OUTPUT
-          echo "Env is ${{vars.name}}"
+          echo "Env is $name"
           printenv
 
       - name: checkout the code
