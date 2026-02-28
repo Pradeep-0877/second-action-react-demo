@@ -1,0 +1,8 @@
+name: Resuable Deploy
+on: workflow_call
+jobs: 
+  Build: 
+    runs-on: ubuntu-latest
+    steps: 
+        - name: Deploying
+          run: Deployed successfully

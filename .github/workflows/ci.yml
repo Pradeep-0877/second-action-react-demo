@@ -14,9 +14,9 @@ on:
       env: 
         type: string
         default: "Dev"
-  push: 
-    branches: 
-      - master
+  # push: 
+  #   branches: 
+  #     - master
    
 # env: 
 #   name: coming from workflow
