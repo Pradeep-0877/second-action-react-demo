@@ -33,6 +33,7 @@ jobs:
       - name: Print hello
         id: name
         run: |
+          echo "My secret is ${{secrets.git_password}}"
           echo "My name is ${{inputs.Test}}"
           echo "NAME=pradeep" >> $GITHUB_OUTPUT
           echo "Env is ${{env.name}}"
