@@ -55,6 +55,7 @@ jobs:
         run: |
           npm ci
           ls 
+          exit 1
       - name: Testing...
         run: npm test
 
@@ -69,6 +70,7 @@ jobs:
 
   Test: 
     runs-on: windows-latest
+    if: failure()
     needs: Build
     steps: 
       - name: Get code
@@ -98,7 +100,7 @@ jobs:
           exit 1
 
       - name: upload test result
-        if: failure() && steps.test.outcome == 'failure'
+        # if: failure() && steps.test.outcome == 'failure'
         uses: actions/upload-artifact@v6
         with: 
           name: test-report
@@ -106,7 +108,7 @@ jobs:
 
 
   Deploy: 
-    needs: Build 
+    needs: [Build] 
     runs-on: ubuntu-latest
     steps: 
     - name: displaying job output
