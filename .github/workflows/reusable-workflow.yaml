@@ -1,8 +1,14 @@
 name: Resuable Deploy
-on: workflow_call
+on: 
+  workflow_call:
+    inputs: 
+      env: 
+        type: string
+        default: Dev
+
 jobs: 
   Build: 
     runs-on: ubuntu-latest
     steps: 
         - name: Deploying
-          run: echo "Deployed successfully"
+          run: echo "Deployed successfully to ${{inputs.env}}"
