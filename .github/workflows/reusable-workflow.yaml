@@ -8,11 +8,20 @@ on:
     secrets: 
         pat_token: 
             required: true
+    outputs: 
+        result: 
+            description: "Deployment result"
+            value: ${{jobs.Build.outputs.result}} 
             
 
 jobs: 
   Build: 
+    outputs: 
+        result: ${{steps.result.outputs.RESULT}} 
     runs-on: ubuntu-latest
     steps: 
         - name: Deploying
           run: echo "Deployed successfully to ${{inputs.env}}"
+        - name: set result output
+          id: result
+          run: echo "RESULT=SUCCESS!" >> $GITHUB_OUTPUT

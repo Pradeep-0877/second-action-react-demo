@@ -7,3 +7,9 @@ jobs:
       env: "prod"
     secrets: 
         pat_token: ${{secrets.NAME}}
+  Deploy: 
+    runs-on: ubuntu-latest
+    needs: Build
+    steps: 
+      - name: Diplaying output of Build
+        echo: "${{needs.Build.outputs.result}}"
