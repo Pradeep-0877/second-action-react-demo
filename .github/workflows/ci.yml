@@ -98,7 +98,7 @@ jobs:
           exit 1
 
       - name: upload test result
-        if: success() && steps.test.outcome == 'success'
+        if: failure() && steps.test.outcome == 'failure'
         uses: actions/upload-artifact@v6
         with: 
           name: test-report
