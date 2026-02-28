@@ -97,7 +97,7 @@ jobs:
           ls
 
       - name: upload test result
-        if: steps.test.outcome == 'success'
+        if: success() && steps.test.outcome == 'success'
         uses: actions/upload-artifact@v6
         with: 
           name: test-report
