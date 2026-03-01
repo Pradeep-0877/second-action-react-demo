@@ -11,8 +11,8 @@ jobs:
 
   Deploy: 
     runs-on: ubuntu-latest
-    container: 
-      image: ubuntu:22.04
+    # container: 
+    #   image: ubuntu:22.04
     services: 
       mongo: 
         image: mongo
