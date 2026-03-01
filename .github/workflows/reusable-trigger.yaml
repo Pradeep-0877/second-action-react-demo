@@ -25,12 +25,16 @@ jobs:
       - name: Diplaying output of Build
         run: echo "${{needs.Build.outputs.result}}"
 
-      - name: Wait for Mongo to be ready
+      - name: Wait for Mongo port
         run: |
-          for i in {1..20}; do
-            mongosh "mongodb://root:root@mongo:27017/admin" --eval "db.runCommand({ ping: 1 })" && exit 0
-            echo "Mongo not ready yet, retrying..."
-            sleep 5
+          for i in {1..30}; do
+            nc -z mongo 27017 && echo "Mongo port open" && exit 0
+            echo "Waiting for Mongo..."
+            sleep 10
           done
           echo "Mongo did not become ready in time"
           exit 1
+
+      - name: Connection test mongo
+        run: |
+          mongosh "mongodb://root:root@mongo:27017/admin" --eval "db.runCommand({ ping: 1 })"
