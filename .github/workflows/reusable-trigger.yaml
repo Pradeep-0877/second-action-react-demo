@@ -11,8 +11,6 @@ jobs:
 
   Deploy: 
     runs-on: ubuntu-latest
-    # container: 
-    #   image: ubuntu:22.04
     services: 
       mongo: 
         image: mongo
@@ -27,14 +25,16 @@ jobs:
       - name: Diplaying output of Build
         run: echo "${{needs.Build.outputs.result}}"
 
-      # - name: Install MongoDB client
-      #   run: |
-      #     apt-get update
-      #     apt-get install -y mongodb-clients
-
-      - name: Connection test mongo
+      - name: Install MongoDB shell
         run: |
-          mongo --host mongo --port 27017 \
-            -u root -p root \
-            --authenticationDatabase admin \
-            --eval "db.runCommand({ ping: 1 })"
+          apt-get update
+          apt-get install -y mongodb-mongosh
+
+      - name: Wait for Mongo to be ready
+        run: |
+          for i in {1..10}; do
+            mongosh "mongodb://root:root@mongo:27017/admin" \
+              --eval "db.runCommand({ ping: 1 })" && break
+            echo "Mongo not ready yet, retrying..."
+            sleep 5
+          done
