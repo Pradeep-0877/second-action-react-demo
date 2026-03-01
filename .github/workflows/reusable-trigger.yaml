@@ -1,17 +1,40 @@
 name: use reusable workflow
 on: workflow_dispatch
+
 jobs: 
   Build: 
     uses: ./.github/workflows/reusable-workflow.yaml
     with: 
       env: "prod"
     secrets: 
-        pat_token: ${{secrets.NAME}}
+      pat_token: ${{secrets.NAME}}
+
   Deploy: 
     runs-on: ubuntu-latest
     container: 
-        image: ubuntu:22.04
+      image: ubuntu:22.04
+    services: 
+      mongo: 
+        image: mongo
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: root
+        ports:
+          - 27017:27017
+
     needs: Build
     steps: 
       - name: Diplaying output of Build
         run: echo "${{needs.Build.outputs.result}}"
+
+      - name: Install MongoDB client
+        run: |
+          apt-get update
+          apt-get install -y mongodb-clients
+
+      - name: Connection test mongo
+        run: |
+          mongo --host mongo --port 27017 \
+            -u root -p root \
+            --authenticationDatabase admin \
+            --eval "db.runCommand({ ping: 1 })"
