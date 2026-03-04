@@ -23,7 +23,9 @@ jobs:
     needs: Build
     steps:
       - name: Diplaying output of Build
-        run: echo "${{needs.Build.outputs.result}}"
+        run: |
+          echo "${{needs.Build.outputs.result}}"
+          echo "::error:: This is an error"
 
       - name: Wait for Mongo port
         run: |
